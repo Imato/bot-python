@@ -24,3 +24,7 @@ __pycache__/
 # Windows useless files.
 Thumbs.db
 desktop.ini
+
+build/
+dist/
+mailru_im_bot_imato.egg-info/

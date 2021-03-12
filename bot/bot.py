@@ -30,7 +30,7 @@ except ImportError:
 
 
 class Bot(object):
-    def __init__(self, token, api_url_base=None, name=None, version=None, timeout_s=20, poll_time_s=60, is_myteam=False):
+    def __init__(self, token, api_url_base=None, name=None, version=None, timeout_s=20, poll_time_s=60, is_myteam=False, proxy=None):
         super(Bot, self).__init__()
 
         self.log = logging.getLogger(__name__)
@@ -43,6 +43,7 @@ class Bot(object):
         self.poll_time_s = poll_time_s
         self.last_event_id = 0
         self.is_myteam = is_myteam
+        self.proxies = None if proxy is None else {'http': f'http://{proxy}', 'https': f'http://{proxy}'}
 
         self.dispatcher = Dispatcher(self)
         self.running = False
@@ -75,6 +76,10 @@ class Bot(object):
     @cached_property
     def http_session(self):
         session = requests.Session()
+        if not (self.proxies is None):
+            session.proxies = self.proxies
+
+        print(session.proxies)
 
         for scheme in ("http://", "https://"):
             session.mount(scheme, BotLoggingHTTPAdapter(bot=self))

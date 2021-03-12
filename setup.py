@@ -19,12 +19,12 @@ def requirements():
 
 
 setup(
-    name="mailru-im-bot",
+    name="mailru-im-bot-imato",
     version=bot.__version__,
     description="Pure Python interface for Bot API. Bot cookbook for Humans.",
     long_description=long_description(),
     long_description_content_type="text/markdown",
-    url="https://github.com/mail-ru-im/bot-python",
+    url="https://github.com/Imato/bot-python",
     author="ICQ LLC (Mail.Ru Group)",
     author_email="support@icq.com",
     license="MIT",
